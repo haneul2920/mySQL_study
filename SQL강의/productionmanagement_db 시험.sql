@@ -86,7 +86,7 @@ begin
     
     set manufacture_id = i;
     set v_manufacture_code = concat(i);
-    set v_manufacture_date = DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * DATEDIFF('2023-12-31', '2020-01-01')) DAY);
+    set v_manufacture_date = DATE_ADD('2000-01-01', INTERVAL FLOOR(RAND() * DATEDIFF('2023-12-31', '2000-01-01')) DAY);
     set v_manufacture_quantity = floor(1 +(rand() * 30));
     
     insert into manufacture (manufacture_code, manufacture_date, product_code, part_code, manufacture_quantity) values (v_manufacture_code, v_manufacture_date, v_product_code, v_part_code, v_manufacture_quantity);
@@ -101,5 +101,5 @@ begin
 end //
 delimiter ;
 
-call manufacturedatas(80000);
-select * from manufacture;
+call manufacturedatas(100000);
+select max(manufacture_code) from manufacture;

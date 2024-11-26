@@ -72,3 +72,17 @@ insert into member values ('MOO','마마무',9,"태국");
 -- 인덱스를 활용 하려면 where를 사용 해야한다.
 select mem_id, mem_name, addr from member
 where mem_name = '소녀시대';
+
+
+-- 보조 인덱스 삭제
+drop index idx_mamber_number on member;
+drop index idx_member_name on member;
+drop index idx_member_addr on member;
+
+-- 클러스터 인덱스 삭제
+alter table member drop primary key;
+
+-- 현재 테이블이 외래키로 참조 해 주고 있는 테이블 확인 방법
+select table_name, constraint_name
+from information_schema.referential_constraints
+where constraint_schema = 'market_db2';
